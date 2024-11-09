@@ -60,7 +60,7 @@ student-management-system/
 ---------------------------------------
 Step 1: Clone the Repository
    1. Open a terminal or command prompt.
-   2. Clone the repository using Git: 'git clone https://github.com/yourusername/student-management-system.git'
+   2. Clone the repository.
    3. Navigate to the project directory.
 
 Step 2: Import the Project into Eclipse
