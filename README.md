@@ -72,28 +72,7 @@ Step 2: Import the Project into Eclipse
 
 Step 3: Create a Database using MySQL Workbench
 1. Install MySQL Server
-2. Create database using schema in src/schema.sql:
-   - CREATE DATABASE student_management
-   - USE student_management
-   - CREATE TABLE students (
-       id INT AUTO_INCREMENT PRIMARY KEY,
-       name VARCHAR(100) NOT NULL,
-       age INT NOT NULL,
-       email VARCHAR(50) UNIQUE NOT NULL,
-       admission_no VARCHAR(13) UNIQUE NOT NULL,
-       course VARCHAR(100) NOT NULL,
-       passwd VARCHAR(20) NOT NULL
-   );
-
-   - CREATE TABLE teachers (
-       id INT AUTO_INCREMENT PRIMARY KEY,
-       name VARCHAR(100) NOT NULL,
-       age INT NOT NULL,
-       email VARCHAR(50) UNIQUE NOT NULL,
-       employee_id VARCHAR(13) UNIQUE NOT NULL,
-       course VARCHAR(100) NOT NULL,
-       passwd VARCHAR(20) NOT NULL
-   );
+2. Create database using sql commands given in schema in src/schema.sql.
 
 Step 3: Configure Database Connection
    1. Open the file DBConnection.java located at 'src/main/java/com/sms/dao/DBConnection.java'
