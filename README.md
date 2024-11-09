@@ -85,9 +85,37 @@ Update connection details:
 2. Install dependencies:
    mvn clean install
 
-Running the Application
------------------------
+**Running the Application in Eclipse IDE**
+---------------------------------------
+Step 1: Clone the Repository
+   1. Open a terminal or command prompt.
+   2. Clone the repository using Git: git clone https://github.com/yourusername/student-management-system.git
+   3. Navigate to the project directory.
 
+Step 2: Import the Project into Eclipse
+   1. Open Eclipse IDE.
+   2. Go to File > Import....
+   3. Select Existing Maven Projects under Maven and click Next.
+   4. Browse to the directory where you cloned the project and select it.
+   5. Click Finish to import the project.
+
+Step 3: Configure Database Connection
+   1. Open the file DBConnection.java located at 'src/main/java/com/sms/dao/DBConnection.java'
+   2. Ensure that the database connection details (URL, USER, PASSWORD) are correctly set:
+                                                            private static final String URL = "jdbc:mysql://localhost:3306/student_management";
+                                                            private static final String USER = "root"; // or your MySQL username
+                                                            private static final String PASSWORD = "root"; // or your MySQL password
+
+Step 4: Add Dependencies
+   1. Ensure that the required dependencies (like MySQL Connector/J) are specified in the pom.xml file.
+   2. Right-click on the project in Eclipse, and select Maven > Update Project... to download the dependencies.
+
+Step 5: Run the Application
+   1. Open the Main.java file located at src/main/java/com/sms/student_management_system/Main.java.
+   2. Right-click on Main.java and select Run As > Java Application.
+   3. The application will run, and you should see output in the console displaying the added students and teachers.
+
+By following these steps, you should be able to run the Student Management System project in Eclipse IDE successfully.
 
 Features
 --------
