@@ -56,35 +56,6 @@ student-management-system/
 - Maven for dependency management
 - Eclipse IDE
 
-**Database Setup**
---------------
-1. Install MySQL Server
-2. Create database using schema in src/schema.sql:
-   - CREATE DATABASE student_management
-   - USE student_management
-
-**Database Connection Configuration**
----------------------------------
-File: src/main/java/com/sms/dao/DBConnection.java
-Update connection details:
-- URL: jdbc:mysql://localhost:3306/student_management
-- USER: root
-- PASSWORD: root
-
-**Dependencies**
-------------
-- MySQL Connector/J
-- MYSQL Workbench
-
-**Building the Project**
---------------------
-1. Clone repository:
-   git clone https://github.com/**yourusername**/student-management-system.git
-   cd student-management-system
-
-2. Install dependencies:
-   mvn clean install
-
 **Running the Application in Eclipse IDE**
 ---------------------------------------
 Step 1: Clone the Repository
@@ -99,16 +70,47 @@ Step 2: Import the Project into Eclipse
    4. Browse to the directory where you cloned the project and select it.
    5. Click Finish to import the project.
 
+Step 3: Create a Database using MySQL Workbench
+1. Install MySQL Server
+2. Create database using schema in src/schema.sql:
+   - CREATE DATABASE student_management
+   - USE student_management
+   - CREATE TABLE students (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       name VARCHAR(100) NOT NULL,
+       age INT NOT NULL,
+       email VARCHAR(50) UNIQUE NOT NULL,
+       admission_no VARCHAR(13) UNIQUE NOT NULL,
+       course VARCHAR(100) NOT NULL,
+       passwd VARCHAR(20) NOT NULL
+   );
+
+   - CREATE TABLE teachers (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       name VARCHAR(100) NOT NULL,
+       age INT NOT NULL,
+       email VARCHAR(50) UNIQUE NOT NULL,
+       employee_id VARCHAR(13) UNIQUE NOT NULL,
+       course VARCHAR(100) NOT NULL,
+       passwd VARCHAR(20) NOT NULL
+   );
+
 Step 3: Configure Database Connection
    1. Open the file DBConnection.java located at 'src/main/java/com/sms/dao/DBConnection.java'
-   2. Ensure that the database connection details (URL, USER, PASSWORD) are correctly set:
-                                                            private static final String URL = "jdbc:mysql://localhost:3306/student_management";
-                                                            private static final String USER = "root"; // or your MySQL username
-                                                            private static final String PASSWORD = "root"; // or your MySQL password
+   2. Ensure that the database connection details (URL, USER, PASSWORD) are correctly set
+      Update connection details:
+         - URL: jdbc:mysql://localhost:3306/student_management
+         - USER: root // or your MySQL username
+         - PASSWORD: root // or your MySQL password
 
 Step 4: Add Dependencies
    1. Ensure that the required dependencies (like MySQL Connector/J) are specified in the pom.xml file.
    2. Right-click on the project in Eclipse, and select Maven > Update Project... to download the dependencies.
+
+   Dependencies:
+      - MYSQL
+      - MySQL Connector/J
+      - MYSQL Workbench
 
 Step 5: Run the Application
    1. Open the Main.java file located at src/main/java/com/sms/student_management_system/Main.java.
