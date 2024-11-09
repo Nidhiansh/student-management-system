@@ -74,7 +74,7 @@ Step 3: Create a Database using MySQL Workbench
 1. Install MySQL Server
 2. Create database using sql commands given in schema in src/schema.sql.
 
-Step 3: Configure Database Connection
+Step 4: Configure Database Connection
    1. Open the file DBConnection.java located at 'src/main/java/com/sms/dao/DBConnection.java'
    2. Ensure that the database connection details (URL, USER, PASSWORD) are correctly set
       Update connection details:
@@ -82,7 +82,7 @@ Step 3: Configure Database Connection
          - USER: root // or your MySQL username
          - PASSWORD: root // or your MySQL password
 
-Step 4: Add Dependencies
+Step 5: Add Dependencies
    1. Ensure that the required dependencies (like MySQL Connector/J) are specified in the pom.xml file.
    2. Right-click on the project in Eclipse, and select Maven > Update Project... to download the dependencies.
 
@@ -91,7 +91,7 @@ Step 4: Add Dependencies
       - MySQL Connector/J
       - MYSQL Workbench
 
-Step 5: Run the Application
+Step 6: Run the Application
    1. Open the Main.java file located at src/main/java/com/sms/student_management_system/Main.java.
    2. Right-click on Main.java and select Run As > Java Application.
    3. The application will run, and you should see output in the console displaying the added students and teachers.
