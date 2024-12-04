@@ -90,6 +90,7 @@ student-management-system/
    ├─ profile.webp   
    
    └─ student-management-system.png
+   
 -------------
 **Prerequisites**
 -------------
