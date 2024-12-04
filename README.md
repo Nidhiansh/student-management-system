@@ -8,48 +8,89 @@ A Java-based Student Management System for managing student and teacher informat
 **Project Structure**
 -----------------
 student-management-system/
-│
-│
-├─ README.md
-├─ pom.xml
-├─ schema.sql
-├─ src
-│  └─ main
-│     └─ java
-│       └─ com
-│          └─ sms
-│             ├─ dao
-│             │  ├─ DBConnection.java
-│             │  ├─ StudentDAO.java
-│             │  └─ TeacherDAO.java
-│             ├─ model
-│             │  ├─ Student.java
-│             │  └─ Teacher.java
-│             └─ student_management_system
-│                └─ Main.java
-│      
-└─ web
-   ├─ Attendance.html
-   ├─ Collegeinfo.html
-   ├─ Feedback.html
-   ├─ Notice.html
-   ├─ Reportcard.html
-   ├─ Timetable.html
-   ├─ admitcard.html
-   ├─ bootstrap
-   │  └─ bootstrap.min.css
-   ├─ courses.html
-   ├─ css
-   │  └─ styles.css
-   ├─ dashboard.html
-   ├─ fees.html
-   ├─ index.html
-   ├─ js
-   │  └─ script.js
-   ├─ performance.html
-   ├─ profile.webp   
-   └─ student-management-system.png
 
+│
+
+│
+
+├─ README.md
+
+├─ pom.xml
+
+├─ schema.sql
+
+├─ src
+
+│  └─ main
+
+│     └─ java
+
+│       └─ com
+
+│          └─ sms
+
+│             ├─ dao
+
+│             │  ├─ DBConnection.java
+
+│             │  ├─ StudentDAO.java
+
+│             │  └─ TeacherDAO.java
+
+│             ├─ model
+
+│             │  ├─ Student.java
+
+│             │  └─ Teacher.java
+
+│             └─ student_management_system
+
+│                └─ Main.java
+
+│      
+
+└─ web
+
+   ├─ Attendance.html
+   
+   ├─ Collegeinfo.html
+   
+   ├─ Feedback.html
+   
+   ├─ Notice.html
+   
+   ├─ Reportcard.html
+   
+   ├─ Timetable.html
+   
+   ├─ admitcard.html
+   
+   ├─ bootstrap
+   
+   │  └─ bootstrap.min.css
+   
+   ├─ courses.html
+   
+   ├─ css
+   
+   │  └─ styles.css
+   
+   ├─ dashboard.html
+   
+   ├─ fees.html
+   
+   ├─ index.html
+   
+   ├─ js
+   
+   │  └─ script.js
+   
+   ├─ performance.html
+   
+   ├─ profile.webp   
+   
+   └─ student-management-system.png
+-------------
 **Prerequisites**
 -------------
 - Java Development Kit (JDK) 8 or higher
