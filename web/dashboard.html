@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --gradient-primary: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --gradient-secondary: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+            --light-bg: #f4f6f9;
+            --text-color: #2c3e50;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Arial', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+            margin-right: 15px;
+        }
+
+        .sidebar {
+            width: 100%;
+            background: var(--gradient-primary);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .sidebar-brand {
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .entity-button:hover {
+            background-color: #1f232946;
+            color: #007bff;
+            border-left-color: #007bff;
+            transform: translateX(10px);
+        }
+
+        .dashboard-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Use auto-fit */
+            gap: 16px; /* Adjust spacing between items */
+        }       
+
+        .card {
+            min-height: 150px; /* Set a minimum height for consistency */
+            display: flex;
+            flex-direction: column; /* Ensure content is stacked vertically */
+        }
+
+        .entity-button {
+            display: block;
+            width: 100%;
+            padding: 10px 20px;
+            text-align: left;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .entity-menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .entity-button {
+            width: 50%;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .entity-button a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .entity-button i {
+            margin-right: 10px;
+        }
+
+        .content {
+            width: 100%;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-welcome {
+            background: var(--gradient-secondary);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 30vh;
+            width: 100%;
+        }
+
+        .calendar {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .profile-image {
+            width: 100px; /* Decrease width */
+            height: 100px; /* Decrease height */
+            border-radius: 50%; /* Keep it circular */
+            object-fit: cover; /* Ensure the image covers the area */
+        }
+
+        @media (min-width: 768px) {
+            .d-flex {
+                flex-direction: row;
+            }
+
+            .mobile-menu-toggle {
+                display: none !important;
+            }
+
+            .sidebar {
+                width: 80px;
+                height: 100vh;
+                position: fixed;
+                overflow-y: auto;
+            }
+
+            .sidebar:hover {
+                width: 250px;
+            }
+
+            .sidebar .full-text {
+                opacity: 0;
+                white-space: nowrap;
+                transition: opacity 0.3s ease;
+            }
+
+            .sidebar:hover .full-text {
+                opacity: 1;
+            }
+
+            .entity-button {
+                width: 100%;
+                text-align: left;
+            }
+
+            .entity-button a {
+                justify-content: flex-start;
+            }
+
+            .content {
+                margin-left: 80px;
+                width: calc(100% - 80px);
+            }
+
+            .sidebar:hover + .content {
+                margin-left: 250px;
+                width: calc(100% - 250px);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .sidebar.mobile-sidebar {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 250px;
+                height: 100%;
+                z-index: 1000;
+                transition: left 0.3s ease;
+                overflow-y: auto;
+            }
+
+            .sidebar.mobile-sidebar.mobile-open {
+                left: 0;
+            }
+
+            .content.sidebar-active {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+
+            .entity-button {
+                width: 100%;
+            }
+
+            .navbar {
+                position: relative;
+                z-index: 1001;
+            }
+            
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex">
+        <aside class="sidebar">
+            <div class="sidebar-brand">Menu</div>
+            <div class="entity-menu">
+                <div class="entity-button">
+                    <a href="Attendance.html"><i class="fas fa-calendar-check"></i> <span class="full-text">Attendance</span></a>
+                </div>
+                <div class="entity-button">
+                    <a href="courses.html"><i class="fas fa-book-open"></i> <span class="full-text">Courses</span></a>
+                </div>
+                <div class="entity-button">
+                    <a href="admitcard.html"><i class="fas fa-id-card"></i> <span class="full-text">Admit Card</span></a>
+                </div>
+                <div class="entity-button">
+                    <a href="fees.html"><i class="fas fa-dollar-sign"></i> <span class="full-text">Fees</span></a>
+                </div>
+                <div class="entity-button">
+                    <a href="performance.html"><i class="fas fa-chart-line"></i> <span class="full-text">Performance</span></a>
+                </div>
+                <div class="entity-button">
+                    <a href="Timetable.html"><i class="fas fa-table"></i> <span class="full-text">Timetable</span></a>
+                </div>
+                <div class="entity-button">
+                    <a href="Reportcard.html"><i class="fas fa-file-alt"></i> <span class="full-text">Report Card</span></a>
+                </div>
+                <div class="entity-button">
+                    <a href="Feedback.html"><i class="fas fa-comments"></i> <span class="full-text">Feedback</span></a>
+                </div>
+                <div class="entity-button">
+                    <a href="Notice.html"><i class="fas fa-bell"></i> <span class="full-text">Notices</span></a>
+                </div>
+                <div class="entity-button">
+                    <a href="Collegeinfo.html"><i class="fas fa-university"></i> <span class="full-text">College Info</span></a>
+                </div>
+            </div>
+        </aside>
+        <main class="content">
+            <header>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">Student Management System</a>
+                        <button class="btn btn-primary ms-auto" onclick="window.location.href='dashboard.html'">Home</button>
+                        <div class="ms-auto">
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+                                    <i class="fas fa-user-circle me-2"></i>Profile
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#changePasswordModal"><i class="fas fa-key me-2"></i>Change Password</a></li>
+                                    <li><a class="dropdown-item" href="index.html"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <section class="container-fluid p-4">
+                <div class="dashboard-welcome text-center">
+                    <h2>Welcome to the Dashboard, John.</h2>
+                    <p>Select an option from the menu to get started.</p>
+                </div>
+                <!-- Dashboard Items Grid -->
+                <div class="dashboard-items">
+                    <!-- Notifications Section -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Recent Notifications</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>New course materials uploaded for CS101.</li>
+                                <li>Reminder: Fee payment due by December 15.</li>
+                                <li>Feedback requested for the last semester's courses.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Student Information Section -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Student Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="profile.webp" alt="Profile Image" class="profile-image me-3">
+                                <ul>
+                                    <li><strong>Name:</strong> John Doe</li>
+                                    <li><strong>ID:</strong> 123456</li>
+                                    <li><strong>Course:</strong> Computer Science</li>
+                                    <li><strong>Email:</strong> johndoe@example.com</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Performance Overview Section -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Performance Overview</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>CGPA:</strong> 8.78</p>
+                            <p><strong>Last Exam Results:</strong></p>
+                            <ul>
+                                <li>DS: O</li>
+                                <li>JAVA: A</li>
+                                <li>DBMS: A+</li>
+                            </ul>
+                            <div class="chart-container">
+                                <canvas id="performanceChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Important Dates Calendar -->
+                    <div class="calendar card">
+                        <div class="card-header">
+                            <h5>Important Dates</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li><strong>December 1:</strong> Course registration opens</li>
+                                <li><strong>December 15:</strong> Fee payment deadline</li>
+                                <li><strong>January 10:</strong> Classes start</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> <!-- End of dashboard-items -->
+            </section>
+        </main>
+    </div>
+
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="changePasswordForm">
+                        <div class="mb-3">
+                            <label class="form-label">Current Password</label>
+                            <input type="password" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">New Password</label>
+                            <input type="password" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirm New Password</label>
+                            <input type="password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Change Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.sidebar');
+            const content = document.querySelector('.content');
+            const entityButtons = document.querySelectorAll('.entity-button');
+            const logoutLink = document.querySelector('a[href="index.html"]');
+
+            // Logout handling
+            logoutLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.replace('index.html');
+                history.pushState(null, null, 'index.html');
+            });
+
+            // Mobile menu toggle
+            function toggleMobileMenu() {
+                sidebar.classList.toggle('mobile-open');
+                content.classList.toggle('sidebar-active');
+            }
+
+            // Create mobile menu toggle button
+            function createMobileMenuToggle() {
+                const mobileToggle = document.createElement('button');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                mobileToggle.classList.add('mobile-menu-toggle');
+                mobileToggle.addEventListener('click', toggleMobileMenu);
+                
+                const navbar = document.querySelector('.navbar .container-fluid');
+                navbar.insertBefore(mobileToggle, navbar.firstChild);
+            }
+
+            // Responsive breakpoint handling
+            function handleResponsiveness() {
+                const width = window.innerWidth;
+                
+                if (width < 768) {
+                    // Mobile layout
+                    if (!document.querySelector('.mobile-menu-toggle')) {
+                        createMobileMenuToggle();
+                        sidebar.classList.add('mobile-sidebar');
+                        
+                        // Close sidebar when a menu item is clicked
+                        entityButtons.forEach(button => {
+                            button.addEventListener('click', () => {
+                                sidebar.classList.remove('mobile-open');
+                                content.classList.remove('sidebar-active');
+                            });
+                        });
+                    }
+                } else {
+                    // Desktop layout
+                    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+                    if (mobileToggle) {
+                        mobileToggle.remove();
+                    }
+                    sidebar.classList.remove('mobile-sidebar', 'mobile-open');
+                    content.classList.remove('sidebar-active');
+                }
+            }
+
+            // Form validation for password change
+            const changePasswordForm = document.getElementById('changePasswordForm');
+            changePasswordForm.addEventListener('submit', function(e) {
+                const newPassword = this.querySelector('input[type="password"]:nth-child(2)').value;
+                const confirmPassword = this.querySelector('input[type="password"]:nth-child(3)').value;
+
+                if (newPassword !== confirmPassword) {
+                    e.preventDefault();
+                    alert("New password and confirmation do not match.");
+                }
+            });
+
+            // Initial responsiveness check
+            handleResponsiveness();
+
+            // Recheck on window resize
+            window.addEventListener('resize', handleResponsiveness);
+
+            // Performance Chart
+            const ctx = document.getElementById('performanceChart').getContext('2d');
+            const performanceChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['JAVA', 'DS', 'DBMS'],
+                    datasets: [{
+                        label: 'Grades',
+                        data: [95, 88, 92],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(75, 192, 192, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(75, 192, 192, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
