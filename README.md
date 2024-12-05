@@ -158,8 +158,8 @@ Step 2: Import Files in VSCode.
    5. Run the file by opening the Index.html file in Browser.
 
 Step 3: Accessing The Student Management System.
-      Username: admin
-      Password: admin
+   - Username: admin
+   - Password: admin
    1. Once entering the default username and password user will be redirected to the Dashboard.
    2. Once in Dashboard user can access all the features of student management system.
 
