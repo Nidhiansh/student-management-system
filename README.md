@@ -88,6 +88,7 @@ student-management-system/
    │  └─ styles.css
 
    └─ bootstrap
+   
       └─ bootstrap.min.css
      
 -------------
