@@ -83,13 +83,14 @@ student-management-system/
    
    │  └─ script.js
    
-   ├─ css
-   
-   │  └─ styles.css
-
    └─ bootstrap
    
-      └─ bootstrap.min.css
+   │  └─  bootstrap.min.css
+   
+   ├─ css
+   
+     └─ styles.css
+
      
 -------------
 **Prerequisites**
