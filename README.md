@@ -65,15 +65,7 @@ student-management-system/
    
    ├─ admitcard.html
    
-   ├─ bootstrap
-   
-   │  └─ bootstrap.min.css
-   
    ├─ courses.html
-   
-   ├─ css
-   
-   │  └─ styles.css
    
    ├─ dashboard.html
    
@@ -81,16 +73,23 @@ student-management-system/
    
    ├─ index.html
    
-   ├─ js
-   
-   │  └─ script.js
-   
    ├─ performance.html
    
    ├─ profile.webp   
    
    └─ student-management-system.png
    
+   ├─ js
+   
+   │  └─ script.js
+   
+   ├─ css
+   
+   │  └─ styles.css
+
+   └─ bootstrap
+      └─ bootstrap.min.css
+     
 -------------
 **Prerequisites**
 -------------
@@ -141,6 +140,28 @@ Step 6: Run the Application
 
 By following these steps, you should be able to run the Student Management System project in Eclipse IDE successfully.
 
+--------
+Running WebApp in browser
+--------
+Step 1: Clone the Repository
+   1. Open a terminal or command prompt.
+   2. Clone the repository.
+   3. Navigate to the project directory.
+
+Step 2: Import Files in VSCode.
+   1. Open VSCode.
+   2. Go to File > Import....
+   3. Browse to the directory where you cloned the project and select it.
+   4. CLick on Import.
+   5. Run the file by opening the Index.html file in Browser.
+
+Step 3: Accessing The Student Management System.
+      Username: admin
+      Password: admin
+   1. Once entering the default username and password user will be redirected to the Dashboard.
+   2. Once in Dashboard user can access all the features of student management system.
+
+
 Features
 --------
 - Add new students
@@ -148,6 +169,20 @@ Features
 - Retrieve all students
 - Retrieve all teachers
 
+Features in WebApp
+--------
+- Downloading of admitcard.
+- Checking Day Based Attendance.
+- College Information.
+- Checking Alloted Courses.
+- Having all important data in dashboard.
+- Checkign fees and fees status.
+- Giving Feedback related to issues.
+- Important Notice.
+- Checking Performance / Grades.
+- Downloading of Reportcard.
+- CLass Timetable.
+  
 Database Schema
 ---------------
 Students Table Columns:
@@ -174,4 +209,4 @@ Troubleshooting
 - Ensure MySQL server is running
 - Verify database connection parameters
 - Check that all dependencies are installed
-
+- Checking if all the downloades/cloned files are in the same directory as seen in project structure.
