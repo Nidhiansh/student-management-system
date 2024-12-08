@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Management System - Login</title>
+    
+    <!-- Add these meta tags to prevent caching and browser history retention -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <style>
         body {
-            background-image: url('https://wpschoolpress.com/wp-content/uploads/2023/03/student-management-system.png'); /* Replace with your image URL */
+            background-image: url('https://wpschoolpress.com/wp-content/uploads/2023/03/student-management-system.png');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -17,7 +23,7 @@
             justify-content: center;
         }
         .container {
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -55,5 +61,17 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/script.js"></script>
+    
+    <script>
+        // Additional JavaScript to handle back button behavior
+        window.onload = function() {
+            // Prevent page from being cached
+            window.history.pushState(null, null, document.URL);
+            window.addEventListener('popstate', function() {
+                // Redirect to login page if back button is pressed
+                window.location.reload();
+            });
+        }
+    </script>
 </body>
 </html>
